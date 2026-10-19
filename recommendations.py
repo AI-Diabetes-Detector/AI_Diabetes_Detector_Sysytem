@@ -5,7 +5,7 @@ def get_recommendation(prediction: int) -> str:
     """
     # Non-diagnostic disclaimer required for the project
     disclaimer = (
-        "\n\nDISCLAIMER: This tool is created for educational and school project "
+        "\n\nDISCLAIMER: That tool is created for educational and school project "
         "purposes only. It does not provide medical diagnoses and should not replace "
         "professional medical advice, diagnosis, or treatment."
     )
