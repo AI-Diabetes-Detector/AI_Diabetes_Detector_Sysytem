@@ -67,7 +67,7 @@ def prepare_data(filepath=None):
 
     return X_train, X_test, y_train, y_test
 
-# 4. Training Function
+# 4. Training 
 def train_model():
     X_train, X_test, y_train, y_test = prepare_data()
     
