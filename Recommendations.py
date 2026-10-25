@@ -25,7 +25,7 @@ def get_recommendation(prediction: int) -> str:
             "for proper screening, diagnosis, and medical guidance."
         )
     else:
-        output = "Invalid prediction value supplied. Expected 0 or 1."
+       raise ValueError(f"Invalid prediction value '{prediction}' supplied. Expected 0 or 1.")
         
     return output + disclaimer
 
