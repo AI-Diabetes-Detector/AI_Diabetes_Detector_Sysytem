@@ -12,14 +12,14 @@ def get_recommendation(prediction: int) -> str:
     
     if prediction == 0:
         output = (
-            "Prediction Result: Low Risk / Negative (0)\n"
+            "[RESULT] Status: Low Risk / Negative (0)\n"
             "• Your model output suggests a lower risk level.\n"
             "• Recommendation: Maintain a balanced diet, stay physically active, "
             "and keep up with routine general health check-ups."
         )
     elif prediction == 1:
         output = (
-            "Prediction Result: Potential Risk / Positive (1)\n"
+            "[RESULT] Status: Potential Risk / Positive (1)\n"
             "• Your model output suggests indicators associated with diabetes risk.\n"
             "• Recommendation: Consult a qualified healthcare professional or doctor "
             "for proper screening, diagnosis, and medical guidance."
