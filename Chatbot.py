@@ -1,4 +1,11 @@
-# DIABETES CHAT BOT - Only answers diabetes related questions
+# DIABETES CHAT BOT Only answers diabetes related questions
+#created by DZUNISANI MABUNDA
+# line 71 MAIN CHAT LOOP
+# from line 19 calculate  weight in kg, height in meters
+#line 82  Check if it's diabetes related
+# line 88 Try to auto-detect weight and height for BMI
+  # line 93 very simple extraction
+  # line 100 check if they typed 175 not 1.75
 
 def is_diabetes_question(question):
     question = question.lower()
@@ -14,7 +21,6 @@ def is_diabetes_question(question):
     return False
 
 def calculate_bmi(weight, height):
-    # weight in kg, height in meters
     bmi = weight / (height ** 2)
     if bmi < 18.5:
         status = "Underweight"
@@ -67,7 +73,6 @@ You can prevent Type 2 by healthy eating, exercise, and keeping normal BMI."""
     return """I can help with diabetes, sugar, BMI, foods, and symptoms.
 Ask me e.g: 'What foods cause diabetes?' or 'Calculate my BMI'"""
 
-# --- MAIN CHAT LOOP ---
 print("Diabetes Chat Bot is ready (type 'exit' to stop)")
 print("Ask me about BMI, foods, sugar, diabetes symptoms...\n")
 
@@ -78,21 +83,21 @@ while True:
         print("Bot: Stay healthy! Remember to check your sugar.")
         break
 
-    # Check if it's diabetes related
+
     if not is_diabetes_question(user_input):
         print("Bot: Sorry, I only answer questions about diabetes, sugar, BMI, foods and symptoms.")
         continue
 
-    # Try to auto-detect weight and height for BMI
+    
     if "kg" in user_input.lower() and "m" in user_input.lower():
         try:
-            # very simple extraction
+            
             parts = user_input.lower().replace("kg"," ").replace("m"," ").split()
             nums = [float(s) for s in parts if s.replace('.','',1).isdigit()]
             if len(nums) >= 2:
                 weight = nums[0]
                 height = nums[1]
-                if height > 3: # if they typed 175 not 1.75
+                if height > 3:
                     height = height/100
                 print(f"Bot: {calculate_bmi(weight, height)}")
                 continue
