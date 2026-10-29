@@ -5,7 +5,7 @@
 #line 82  Check if it's diabetes related
 # line 88 Try to auto-detect weight and height for BMI
   # line 93 very simple extraction
-  # line 100 check if they typed 175 not 1.75
+# line 100 check if they typed 175 not 1.75
 
 def is_diabetes_question(question):
     question = question.lower()
