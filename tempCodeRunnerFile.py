@@ -1,0 +1,1 @@
+print(data["Diabetes_binary"].value_counts()) 
