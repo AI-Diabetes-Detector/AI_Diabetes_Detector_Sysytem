@@ -1,38 +1,37 @@
 def get_recommendation(prediction: int) -> str:
-    """
-    Produces simple informational output for prediction 0 or 1,
-    including a non-diagnostic disclaimer.
-    """
-    # Non-diagnostic disclaimer required for the project
     disclaimer = (
         "\n\nDISCLAIMER: This tool is created for educational and school project "
         "purposes only. It does not provide medical diagnoses and should not replace "
         "professional medical advice, diagnosis, or treatment."
     )
-    
+
     if prediction == 0:
         output = (
-            "[RESULT] Status: Low Risk / Negative (0)\n"
-            "• Your model output suggests a lower risk level.\n"
+            "[RESULT] Predicted Class: No-Diabetes (0)\n"
+            "• The model classified the provided information into the no-diabetes class.\n"
             "• Recommendation: Maintain a balanced diet, stay physically active, "
             "and keep up with routine general health check-ups."
         )
     elif prediction == 1:
         output = (
-            "[RESULT] Status: Potential Risk / Positive (1)\n"
-            "• Your model output suggests indicators associated with diabetes risk.\n"
-            "• Recommendation: Consult a qualified healthcare professional or doctor "
-            "for proper screening, diagnosis, and medical guidance."
+            "[RESULT] Predicted Class: Diabetes/Prediabetes (1)\n"
+            "• The model classified the provided information into the diabetes/prediabetes class.\n"
+            "• Recommendation: Consider consulting a qualified healthcare professional "
+            "for appropriate screening and medical guidance."
         )
     else:
-       raise ValueError(f"Invalid prediction value '{prediction}' supplied. Expected 0 or 1.")
-        
+        raise ValueError(
+            f"Invalid prediction value '{prediction}' supplied. Expected 0 or 1."
+        )
+
     return output + disclaimer
 
-# Optional: Quick test block to verify functionality when run directly
+
 if __name__ == "__main__":
     print("Testing Prediction 0:")
     print(get_recommendation(0))
-    print("\n" + "="*50 + "\n")
+
+    print("\n" + "=" * 60 + "\n")
+
     print("Testing Prediction 1:")
     print(get_recommendation(1))
