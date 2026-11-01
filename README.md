@@ -28,7 +28,7 @@ This is not a medical diagnosis tool - it is an AI prediction system for educati
 - **Dataset:** PIMA Indians Diabetes Dataset
 
 ### 🧠 How It Works
-1. User enters 8 health parameters in the form
+1. User enters health parameters in the form
 2. Data is preprocessed and normalized
 3. Trained Random Forest model analyzes the data
 4. System outputs prediction + confidence score + advice
