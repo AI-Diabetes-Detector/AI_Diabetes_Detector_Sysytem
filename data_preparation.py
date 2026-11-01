@@ -54,4 +54,4 @@ def show_data_information(data):
       print(data[TARGET_COLUMN].value_counts())
 
       print("\nMissing values:")
-      print(data.isnull().sum())
+      print(data.isnull().sum())   
