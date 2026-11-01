@@ -1,55 +1,57 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-from sklearn.preprocessing import StandardScaler
 
-# Load dataset
-data = pd.read_csv("data/diabetes_binary_health_indicators_BRFSS2015.csv")
+DATA_PATH = "data/diabetes_binary_health_indicators_BRFSS2015.csv"
+TARGET_COLUMN = "Diabetes_binary"
 
-# ============================================================================
-# DATA PROCESSING & CLEANING
-# ============================================================================
+FEATURE_COLUMNS = [
+      "HighBP",
+      "HighChol",
+      "CholCheck",
+      "BMI",
+      "Smoker",
+      "Stroke",
+      "HeartDiseaseorAttack",
+      "PhysActivity",
+      "Fruits",
+      "Veggies",
+      "HvyAlcoholConsump",
+      "AnyHealthcare",
+      "NoDocbcCost",
+      "GenHlth",
+      "MentHlth",
+      "PhysHlth",
+      "DiffWalk",
+      "Sex",
+      "Age",
+      "Education",
+      "Income"
+]
 
-# 1. Remove duplicate rows (BRFSS datasets frequently contain duplicates)
-print("Initial shape:", data.shape)
-data = data.drop_duplicates()
-print("Shape after dropping duplicates:", data.shape)
 
-# 2. Check for missing values
-missing_values = data.isnull().sum().sum()
-print(f"Total missing values: {missing_values}")
+def load_data():
 
-# 3. Separate features (x) and target (y)
-y = data["Diabetes_binary"]
-x = data.drop("Diabetes_binary", axis=1)
+      data = pd.read_csv(DATA_PATH)
 
-# 4. Feature Scaling for continuous variables
-# Logistic regression performs better when continuous features (like BMI) 
-# are on the same scale as binary/ordinal indicators.
-continuous_features = ["BMI", "MentHlth", "PhysHlth"]
+      return data
 
-scaler = StandardScaler()
-x[continuous_features] = scaler.fit_transform(x[continuous_features])
 
-# ============================================================================
-# TRAIN/TEST SPLIT
-# ============================================================================
-x_train, x_test, y_train, y_test = train_test_split(
-    x, y, test_size=0.2, random_state=42, stratify=y
-)
+def prepare_data(data):
 
-# ============================================================================
-# MODEL CREATION AND TRAINING
-# ============================================================================
-balanced_model = LogisticRegression(max_iter=1000, class_weight="balanced")
-balanced_model.fit(x_train, y_train)
-balanced_predictions = balanced_model.predict(x_test)
+      x = data[FEATURE_COLUMNS]
+      y = data[TARGET_COLUMN]
 
-# ============================================================================
-# EVALUATION
-# ============================================================================
-print("\n--- Balanced Logistic Regression Results ---")
-print("Accuracy:", accuracy_score(y_test, balanced_predictions))
-print("Confusion Matrix:\n", confusion_matrix(y_test, balanced_predictions))
-print("Classification Report:\n", classification_report(y_test, balanced_predictions))
+      x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.40,random_state=42)
+
+      return x_train,x_test,y_train,y_test
+
+
+def show_data_information(data):
+
+      print("Dataset shape:",data.shape)
+
+      print("\nTarget class counts:")
+      print(data[TARGET_COLUMN].value_counts())
+
+      print("\nMissing values:")
+      print(data.isnull().sum())
